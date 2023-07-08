@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{%block content%}
+<form method="post" action="" name="create-item" class="container">  
+    {% csrf_token %}
+    
+      <label for="itemName" class="form-label">Name</label>
+      <input type="text" class="form-control" id="itemName" name="item-name" >
+    
+    
+        <label for="IIN" class="form-label">IIN</label>
+        <input type="text" class="form-control" id="IIN" name="IIN" >
+      
+    
+        <label for="cost" class="form-label">Cost</label>
+        <input type="number" class="form-control" id="cost" name="cost" >
+    
+
+            <label for="quantity" class="form-label">Quantity</label>
+        <input type="number" class="form-control" id="quantity" name="quantity" >
+
+
+        <label for="selling-price" class="form-label">Selling Price</label>
+        <input type="number" class="form-control" id="selling-price"  name  ="selling-price">
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{%endblock%}

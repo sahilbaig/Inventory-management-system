@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+{%block content%}
+<table class="table container" >
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Item</th>
+        <th scope="col">Time</th>
+        <th scope="col">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        {%for transaction in transactions%}
+        <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{transaction.item.name}}</td>
+        <td>{{transaction.transactiondttm}}</td>
+        <td>{{transaction.quantity}}</td>
+        </tr>
+        {%endfor%}
+        
+    </tbody>
+  </table>
+{%endblock%}

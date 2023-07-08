@@ -1,0 +1,44 @@
+    {%extends 'base.html'%}
+    {%block content%}
+    <table class="table container" >
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Stock</th>
+            <th scope="col"> </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            {%for item in items%}
+            <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.cost}}</td>
+            <td>{{item.quantity}}</td>
+            <td>
+                <button class="btn btn-light" type="button">
+                    <a href="{% url 'item-details' item.IIN%}"> View </a>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-info" type="button">
+                    <a href="{% url 'item-edit' item.IIN%}"> Edit </a>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-warning" type="button">
+                    <a href="{% url 'sell-items' item.IIN%}"> Sell </a>
+                </button>
+            </td>
+            </tr>
+            {%endfor%}
+            
+        </tbody>
+      </table>
+    {%endblock%}
+    

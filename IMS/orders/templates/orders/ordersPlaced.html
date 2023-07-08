@@ -1,0 +1,44 @@
+
+{%extends 'base.html'%}
+{%block content%}
+
+<table class="table container" >
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Item</th>
+        <th scope="col">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        {%for order in orders%}
+        <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{order.name}}</td>
+        <td>{{order.item.name}}</td>
+        <td>{{order.quantity}}</td>
+
+        {%if not order.is_recieved and  not order.is_cancelled %}
+                
+        <td><button>
+          <a href="{% url 'order-status' order.item.id 1%}"> Confirm order </a>
+      </button> </td>
+
+      <td>
+          <button>
+              <a href="{% url 'order-status' order.item.id 0%}"> Decline </a>
+          </button>
+
+      </td>
+        {%endif%}
+
+        
+        </tr>
+        {%endfor%}
+        
+    </tbody>
+  </table>
+
+{%endblock%}

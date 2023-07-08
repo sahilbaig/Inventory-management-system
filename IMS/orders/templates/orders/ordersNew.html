@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+{%block content%}
+<div  class="mb-3">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label for="order-name" class="form-label">Order Name:</label>
+        <input type="text" name="order-name" id="order-name" class="form-control"/>
+        <label for="order-cost">Order Cost : </label>
+        <input type = "text" name ="order-cost" id="order-cost" class="form-control"/>
+        <label for="order-quantity">Order quantity</label>
+        <input type="number" name="order-quantity" id="order-quantity" class="form-control"/>
+        <label for="item-IIN">Item IIN</label>
+        <input type="text" name="item-IIN" id="item-IIN" class="form-control"/>
+        <button type="submit" name="create-order"> Create Order</button>
+    </form>
+</div>
+
+{%endblock%}

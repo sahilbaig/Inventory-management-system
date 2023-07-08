@@ -1,0 +1,9 @@
+{%extends 'base.html'%}
+{%block content%}
+<form action="" method="post" name="sell_form" class="container">
+    {% csrf_token %}
+    <label for="item-quantity" class="form-label">Quantity : </label>
+    <input id="item-quantity" class="form-control" type="number"  name="item-quantity"> 
+    <input type="submit" value="OK">
+</form>
+{%endblock%}

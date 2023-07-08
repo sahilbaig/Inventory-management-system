@@ -1,0 +1,211 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Queue to Registration Time</h5>
+              <p class="card-text">{{ data.key_metrics.registration.time}}
+            </p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Registration to Triage</h5>
+              <p class="card-text">{{ data.key_metrics.triage_waiting.time}}
+            </p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Time to consult</h5>
+              <p class="card-text">{{ data.key_metrics.cons_waiting.time}}
+            </p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Triage end to discharge</h5>
+              <p class="card-text">{{ data.key_metrics.in_zone.time}}
+            </p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Consultation to Discharge</h5>
+              <p class="card-text">{{ data.key_metrics.treatment.time}}
+            </p>
+            </div>
+          </div>
+        
+          
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Lab Order Request to Processing</h5>
+              <p class="card-text">Data missing
+            </p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Radiology Order Request to Processing</h5>
+              <p class="card-text">{{ data.key_metrics.treatment.time}}   
+                <!-- Change this ś -->
+            </p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">UCC Discharge to IP Bed Allotment</h5>
+              <p class="card-text">{{ data.key_metrics.ip_transfers.completed.time  }}   
+            </p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Total visits</h5>
+              <p class="card-text">{{ data.key_metrics.total.count  }}   
+            </p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Visit time:</h5>
+              <p class="card-text">{{ data.completed.avg_act_tm }}   
+            </p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Insurance:</h5>
+              <p class="card-text">{{ data.completed.Payor.Insurance }}   
+            </p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Self pay:</h5>
+              <p class="card-text">{{ data.completed.Payor.Self_Pay }}   
+            </p>
+            </div>
+          </div>
+        
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">International:</h5>
+              <p class="card-text">{{ data.completed.Residency.International}}   
+            </p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Local:</h5>
+              <p class="card-text">{{ data.completed.Residency.Local}}   
+            </p>
+            </div>
+          </div>
+    </div>
+    <div class="col-6">
+        <h1>Patients by interval</h1>
+        <div id="chart">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const module = "AccidentEmergency"
+    var rawData = "{{data | escapejs}}";
+    var jsonData=rawData.replaceAll("'", '"')
+    var data = JSON.parse(jsonData)
+    var test = (data["graphs"]["AccidentEmergency"]["interval"]["barline-1"])
+    console.log(test)
+    
+    var options = {
+          series: [{
+          name: 'TEAM A',
+          type: 'column',
+          data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
+        }, {
+          name: 'TEAM B',
+          type: 'area',
+          data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
+        }, {
+          name: 'TEAM C',
+          type: data["graphs"]["AccidentEmergency"]["interval"]["barline-1"]["y"][1]["type"],
+          data: data["graphs"]["AccidentEmergency"]["interval"]["barline-1"]["y"][1]["data"]
+        }],
+          chart: {
+          height: 350,
+          type: 'line',
+          stacked: false,
+        },
+        stroke: {
+          width: [0, 2, 5],
+          curve: 'smooth'
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: '50%'
+          }
+        },
+        
+        fill: {
+          opacity: [0.85, 0.25, 1],
+          gradient: {
+            inverseColors: false,
+            shade: 'light',
+            type: "vertical",
+            opacityFrom: 0.85,
+            opacityTo: 0.55,
+            stops: [0, 100, 100, 100]
+          }
+        },
+        labels: ['01/01/2003', '02/01/2003', '03/01/2003', '04/01/2003', '05/01/2003', '06/01/2003', '07/01/2003',
+          '08/01/2003', '09/01/2003', '10/01/2003', '11/01/2003'
+        ],
+        markers: {
+          size: 0
+        },
+        xaxis: {
+          type: 'datetime'
+        },
+        yaxis: {
+          title: {
+            text: 'Points',
+          },
+          min: 0
+        },
+        tooltip: {
+          shared: true,
+          intersect: false,
+          y: {
+            formatter: function (y) {
+              if (typeof y !== "undefined") {
+                return y.toFixed(0) + " points";
+              }
+              return y;
+        
+            }
+          }
+        }
+        };
+    
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    
+</script>
+  
+
+{%endblock%}

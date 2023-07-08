@@ -1,0 +1,63 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="row container">
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">item with highest cost</h5>
+          {%for item in max_sold%}
+            <p class="card-text">{{item.name}}</p>
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Item with highest profit</h5>
+          {%for item in max_profit%}
+            <p class="card-text">{{item.name}}</p>
+          {%endfor%}
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Item with highest cost</h5>
+          {%for item in max_cost%}
+            <p class="card-text">{{item.name}}</p>
+          {%endfor%}
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Items out of stock</h5>
+          {%for item in out_of_stock%}
+            <p class="card-text">{{item.name}}</p>
+          {%endfor%}
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Item with maximum items sold</h5>
+          {%for item in max_sold%}
+            <p class="card-text">{{item.name}}</p>
+          {%endfor%}
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+{%endblock%}

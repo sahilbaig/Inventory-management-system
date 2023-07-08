@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{%block content%}
+<form action="" method="post" name="update_form" class="container">
+    {% csrf_token %}
+    <label for="item-name" class="form-label">Item name: </label>
+    <input id="item-name" type="text"  class = "form-control" value={{items.name}} name = "item-name">
+
+    <label for="item-selling-price" class="form-label">Selling Price : </label>
+    <input id="item-selling-price" class="form-control" type="number" value={{items.selling_price}} name="item-selling-price">
+    <br>
+    <input type="submit" value="OK">
+</form>
+
+{%endblock%}

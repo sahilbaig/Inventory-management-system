@@ -1,0 +1,38 @@
+
+{%extends 'base.html'%}
+{%block content%}
+{%for item in items%}
+    <div class="container center">
+        {{item.id}}
+        <p>Name:{{item.name}} </p>
+        <p>IIN: {{item.IIN}} </p>
+        <p>Cost: {{item.cost}} </p>
+        <p>Quantity :{{item.quantity}} </p>
+        <p>Sellling Price : {{item.selling_price}} </p>    
+        <button class="btn btn-info" type="button">
+            <a href="{% url 'item-edit' item.IIN%}"> Edit </a>
+        </button>
+        <button>
+            <a href="{% url 'add-item' item.id %}"> Add item </a>
+        </button>
+        <button class="btn" type="button">
+            <a href="{% url 'orders-placed' item.id %}"> Orders placed </a>
+        </button>
+        <button>
+            <a href="{% url 'orders-recieved' item.id %}"> Orders recieved </a>
+        </button>
+
+        <button>
+            <a href="{% url 'orders-cancelled' item.id %}"> Orders cancelled </a>
+        </button>
+
+        <button>
+            <a href="{% url 'transactions-item' item.id %}"> Transactions</a>
+        </button>
+
+    </div>
+       {%endfor%}
+
+{%endblock%}
+
+<!-- link for showing orders placed of that item, link for showing orders received of that item, link for showing orders canceled of that item, link for showing transactions of that item and in the backend do the necessary operations -->

@@ -1,0 +1,11 @@
+{%extends 'base.html'%}
+{%block content%}
+{%for order in orders%}
+    <div>
+        <p>name:{{order.name}}</p>
+        <p>Quantity:{{order.quantity}}</p>
+        <p>Item:{{order.item.name}}</p>
+    </div>
+    {%endfor%}
+
+{%endblock%}
